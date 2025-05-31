@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Andries Fluit - Amateur photographer based in Belgium">
+    <title>Contact - Andries Fluit</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --background-color: #222;
+            --primary-color: #fff;
+            --secondary-color: #bbb;
+            --hover-color: #ccc;
+            --input-bg: #333;
+            --border-color: #444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - matching original style */
+        .header-content {
+            align-items: center;
+            display: flex;
+            height: 60px;
+            justify-content: space-between;
+            margin: 0 auto;
+            max-width: 1200px;
+            overflow: hidden;
+            position: relative;
+            width: 80%;
+            padding: 20px 0;
+        }
+
+        .title h1 {
+            font-size: 1em;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .title a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .title a:hover {
+            color: #ccc;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        nav ul li a:hover {
+            color: #bbb;
+        }
+
+        /* Main content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .contact-container {
+            background: #222;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-container h1 {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .contact-form label {
+            color: #FFF;
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: 400;
+            font-size: 0.95em;
+        }
+
+        .contact-form input[type=text],
+        .contact-form input[type=email],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #333;
+            color: #FFF;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form input[type=text]:focus,
+        .contact-form input[type=email]:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            background: #3a3a3a;
+        }
+
+        .contact-form textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form .submit-btn {
+            display: inline-block;
+            background: #c2c2c2;
+            color: #000000;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .contact-form .submit-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        /* Success message */
+        .form-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .form-status.success {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .form-status.error {
+            background: #f44336;
+            color: white;
+        }
+
+        /* Footer - matching original */
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #bbbbbb;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .header-content {
+                width: 90%;
+                padding: 15px 0;
+            }
+
+            .title h1 {
+                font-size: 0.9em;
+            }
+
+            nav ul li {
+                margin-left: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.8em;
+            }
+
+            .contact-container {
+                padding: 30px 20px;
+            }
+
+            .contact-container h1 {
+                font-size: 1.5em;
+            }
+
+            .contact-intro {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="title">
+                <a href="index.html">
+                    <h1>Andries<br>Fluit</h1>
+                </a>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="index.html">Portfolio</a></li>
+                    <li><a href="purchase.html">Prints</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contact">
+        <div class="contact-container">
+            <h1>Get in Touch</h1>
+            <p class="contact-intro">
+                Questions about my photography or interested in prints? 
+                Feel free to send me a message.
+            </p>
+            
+            <!-- Updated form with Formspree -->
+            <form class="contact-form" action="https://formspree.io/f/manjwlro" method="POST" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit" value="Send Message" class="submit-btn">
+                </div>
+                
+                <!-- Hidden field to help with spam -->
+                <input type="text" name="_gotcha" style="display:none">
+                
+                <!-- Success message redirect (optional) -->
+                <input type="hidden" name="_next" value="https://andriesfluit.be/contact.html?success=true">
+            </form>
+            
+            <div id="formStatus" class="form-status"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Andries Fluit<br>
+            <a href="mailto:hello@andriesfluit.be">hello@andriesfluit.be</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Check for success parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            const statusDiv = document.getElementById('formStatus');
+            statusDiv.textContent = 'Thank you! Your message has been sent successfully.';
+            statusDiv.className = 'form-status success';
+            statusDiv.style.display = 'block';
+            
+            // Remove the parameter from URL without reloading
+            window.history.replaceState({}, document.title, window.location.pathname);
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Form validation enhancement
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.value = 'Sending...';
+            submitBtn.disabled = true;
+        });
+    </script>
+</body>
+</html>

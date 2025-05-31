@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Purchase prints - Photography by Andries Fluit">
+    <title>Purchase Prints - Andries Fluit</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <script src="https://www.paypal.com/sdk/js?client-id=5ZSBQ98LRFQNG&currency=EUR" data-sdk-integration-source="button-factory"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --background-color: #222;
+            --primary-color: #fff;
+            --secondary-color: #bbb;
+            --hover-color: #ccc;
+            --input-bg: #333;
+            --border-color: #444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - matching other pages */
+        .header-content {
+            align-items: center;
+            display: flex;
+            height: 60px;
+            justify-content: space-between;
+            margin: 0 auto;
+            max-width: 1200px;
+            overflow: hidden;
+            position: relative;
+            width: 80%;
+            padding: 20px 0;
+        }
+
+        .title h1 {
+            font-size: 1em;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .title a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .title a:hover {
+            color: #ccc;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        nav ul li a:hover {
+            color: #bbb;
+        }
+
+        /* Main content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #222;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .print-selection {
+            margin-bottom: 30px;
+        }
+
+        .print-selection label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 400;
+        }
+
+        #print-select {
+            width: 100%;
+            padding: 12px;
+            background: var(--input-bg);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        #print-select:hover {
+            border-color: var(--secondary-color);
+        }
+
+        #print-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        #print-select option {
+            background: var(--input-bg);
+            color: var(--primary-color);
+        }
+
+        /* Print info */
+        .print-info {
+            background: var(--input-bg);
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        .print-info h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .print-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .print-info li {
+            color: var(--secondary-color);
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .print-info li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        /* PayPal button container */
+        #paypal-button-container {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #bbbbbb;
+        }
+
+        /* Loading state */
+        .loading {
+            text-align: center;
+            color: var(--secondary-color);
+        }
+
+        /* Success message */
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .header-content {
+                width: 90%;
+                padding: 15px 0;
+            }
+
+            .title h1 {
+                font-size: 0.9em;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.8em;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .intro-text {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="title">
+                <a href="index.html">
+                    <h1>Andries<br>Fluit</h1>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="purchase">
+        <div class="container">
+            <h1>Purchase Prints</h1>
+            <p class="intro-text">
+                Select a photograph from my collection. Each print is produced on museum-quality paper and shipped with care.
+            </p>
+
+            <div class="print-info">
+                <h3>Print Details</h3>
+                <ul>
+                    <li>Size: 30 x 40 cm (11.8 x 15.7 inches)</li>
+                    <li>Premium matte paper</li>
+                    <li>Archival quality inks</li>
+                    <li>Ships within 5-7 business days</li>
+                    <li>Worldwide shipping available</li>
+                </ul>
+            </div>
+
+            <div class="print-selection">
+                <label for="print-select">Select a print:</label>
+                <select id="print-select">
+                    <option value="print1">I - Island Dreams, Madeira - €50</option>
+                    <option value="print2">II - Road to Nowhere, Madeira - €50</option>
+                    <option value="print3">III - After the Fire, Madeira - €50</option>
+                    <option value="print4">IV - Persian Twilight, Shiraz - €60</option>
+                    <option value="print5">V - Journey Within, Shiraz - €60</option>
+                    <option value="print6">VI - City of a Thousand Hills, Madagascar - €55</option>
+                    <option value="print7">VII - Rural Rhythms, Madagascar - €55</option>
+                    <option value="print8">VIII - River Journey, Madagascar - €55</option>
+                    <option value="print9">IX - Green Cathedral, Madagascar - €55</option>
+                    <option value="print10">X - Arctic Night, Tromsø - €65</option>
+                    <option value="print11">XI - Hope and Change, Washington D.C. - €50</option>
+                    <option value="print12">XII - Monuments and Moments, Washington D.C. - €50</option>
+                    <option value="print13">XIII - Congo Roads, Kinshasa - €60</option>
+                    <option value="print14">XIV - Frozen Fjord, Tromsø - €65</option>
+                </select>
+            </div>
+
+            <div id="paypal-button-container">
+                <div class="loading">Loading payment options...</div>
+            </div>
+
+            <div id="success-message" class="success-message">
+                Thank you for your purchase! You will receive an email confirmation shortly.
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Andries Fluit<br>
+            <a href="mailto:hello@andriesfluit.be">hello@andriesfluit.be</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const printPrices = {
+            'print1': 50,
+            'print2': 50,
+            'print3': 50,
+            'print4': 60,
+            'print5': 60,
+            'print6': 55,
+            'print7': 55,
+            'print8': 55,
+            'print9': 55,
+            'print10': 65,
+            'print11': 50,
+            'print12': 50,
+            'print13': 60,
+            'print14': 65
+        };
+
+        const printNames = {
+            'print1': 'I - Island Dreams, Madeira',
+            'print2': 'II - Road to Nowhere, Madeira',
+            'print3': 'III - After the Fire, Madeira',
+            'print4': 'IV - Persian Twilight, Shiraz',
+            'print5': 'V - Journey Within, Shiraz',
+            'print6': 'VI - City of a Thousand Hills, Madagascar',
+            'print7': 'VII - Rural Rhythms, Madagascar',
+            'print8': 'VIII - River Journey, Madagascar',
+            'print9': 'IX - Green Cathedral, Madagascar',
+            'print10': 'X - Arctic Night, Tromsø',
+            'print11': 'XI - Hope and Change, Washington D.C.',
+            'print12': 'XII - Monuments and Moments, Washington D.C.',
+            'print13': 'XIII - Congo Roads, Kinshasa',
+            'print14': 'XIV - Frozen Fjord, Tromsø'
+        };
+
+        // Initialize PayPal when the page loads
+        window.addEventListener('load', function() {
+            // Check if PayPal is loaded
+            if (typeof paypal !== 'undefined') {
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        const selectedPrint = document.getElementById('print-select').value;
+                        const amount = printPrices[selectedPrint];
+                        const printName = printNames[selectedPrint];
+                        
+                        return actions.order.create({
+                            purchase_units: [{
+                                description: printName,
+                                amount: {
+                                    currency_code: 'EUR',
+                                    value: amount.toString()
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            // Show success message
+                            document.getElementById('success-message').style.display = 'block';
+                            document.getElementById('paypal-button-container').style.display = 'none';
+                            
+                            // Scroll to success message
+                            document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Here you would typically send the order details to your server
+                            console.log('Transaction completed:', details);
+                            
+                            // You might want to send an email notification to yourself
+                            // This would require a backend service
+                        });
+                    },
+                    onError: function(err) {
+                        console.error('PayPal error:', err);
+                        alert('An error occurred with the payment. Please try again or contact hello@andriesfluit.be');
+                    }
+                }).render('#paypal-button-container');
+            } else {
+                // PayPal not loaded (happens in sandboxed environments)
+                document.getElementById('paypal-button-container').innerHTML = `
+                    <div style="text-align: center; padding: 20px; background: #333; border-radius: 4px;">
+                        <p style="color: #bbb; margin-bottom: 10px;">PayPal checkout will appear here on your live website.</p>
+                        <p style="color: #888; font-size: 0.9em;">Currently viewing in preview mode.</p>
+                    </div>
+                `;
+            }
+        });
+
+        // Update price display when selection changes (optional enhancement)
+        document.getElementById('print-select').addEventListener('change', function() {
+            // You could add a price display element here if desired
+        });
+    </script>
+</body>
+</html>
