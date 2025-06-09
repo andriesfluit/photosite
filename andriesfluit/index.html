@@ -32,12 +32,11 @@
             overflow-x: hidden;
         }
 
-        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Header */
+        /* Header - Structurele aanpassing */
         header {
             position: fixed;
             top: 0;
@@ -45,17 +44,18 @@
             background: var(--background-color);
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
+            /* Geen extra padding hier, hoogte bepaald door .header-content */
         }
 
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 0;
+            width: 80%;
+            height: 60px; /* Dit is nu 60px pure content hoogte */
+            padding: 0;   /* GEWIJZIGD: Geen verticale padding meer hier */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 80%;
-            height: 60px;
         }
 
         .title h1 {
@@ -80,6 +80,7 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            /* min-height hier niet per se nodig; view-toggle maakt nav hoog genoeg */
         }
 
         nav a {
@@ -125,408 +126,84 @@
             color: var(--primary-color);
         }
 
-        /* Main Content */
+        /* Main Content - Padding aangepast */
         main {
-            padding-top: 80px;
-            min-height: calc(100vh - 80px);
+            padding-top: 80px; /* Ruimte voor 60px header + ~20px buffer */
+            min-height: calc(100vh - 80px); /* Behoudt de min-height logica */
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px; /* Padding voor de content binnen main */
         }
 
+        /* ... (rest van de CSS voor index.html zoals photo-grid, list-view, modal, about, footer, etc. blijft ongewijzigd) ... */
         /* Grid View */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 20px;
-            animation: fadeIn 0.8s ease;
-        }
-
-        .photo-item {
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            background: var(--bg-secondary);
-            transition: all 0.3s ease;
-        }
-
-        .photo-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: all 0.3s ease;
-        }
-
-        .photo-item:hover {
-            transform: translateY(-2px);
-        }
-
-        .photo-item figcaption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            color: var(--primary-color);
-            padding: 2rem 1.5rem 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .photo-item:hover figcaption {
-            transform: translateY(0);
-        }
-
-        .photo-caption {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
-        }
-
-        .photo-title {
-            font-size: 1.1rem;
-            font-weight: 400;
-        }
-
-        .photo-number {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .photo-location {
-            font-size: 0.85rem;
-            color: var(--secondary-color);
-        }
-
-        /* List View */
-        .photo-list {
-            max-width: 1000px;
-            margin: 0 auto;
-            animation: fadeIn 0.8s ease;
-        }
-
-        .list-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 6rem;
-            align-items: center;
-        }
-
-        .list-item:nth-child(even) {
-            direction: rtl;
-        }
-
-        .list-item:nth-child(even) .list-content {
-            direction: ltr;
-        }
-
-        .list-image {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            background: var(--bg-secondary);
-        }
-
-        .list-image img {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .list-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .list-content {
-            padding: 2rem;
-        }
-
-        .list-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .list-number {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .list-title {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-        }
-
-        .list-meta {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .list-story {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--secondary-color);
-            font-weight: 300;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-            margin: 5vh auto;
-            background: var(--bg-secondary);
-            overflow: hidden;
-            border-radius: 4px;
-        }
-
-        .modal-header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to bottom, rgba(34, 34, 34, 0.95), transparent);
-            padding: 2rem;
-            z-index: 10;
-        }
-
-        .modal-header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-        }
-
-        .modal-info h2 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-meta {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-        }
-
-        .close-modal:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 90vh;
-            object-fit: contain;
-            background: var(--background-color);
-        }
-
-        .modal-story {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(34, 34, 34, 0.95), transparent);
-            padding: 3rem 2rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .modal-story p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* About Section */
-        #about {
-            border-top: 1px solid var(--border-color);
-            margin-top: 6rem;
-            padding: 4rem 0;
-        }
-
-        .about-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content h2 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            color: var(--secondary-color);
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            font-weight: 300;
-            color: var(--secondary-color);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        footer p {
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Loading state */
-        .loading {
-            text-align: center;
-            padding: 4rem;
-            color: var(--secondary-color);
-        }
-
-        /* Responsive */
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 20px; animation: fadeIn 0.8s ease; }
+        .photo-item { position: relative; cursor: pointer; overflow: hidden; background: var(--bg-secondary); transition: all 0.3s ease; }
+        .photo-item img { width: 100%; height: auto; display: block; transition: all 0.3s ease; }
+        .photo-item:hover { transform: translateY(-2px); }
+        .photo-item figcaption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: var(--primary-color); padding: 2rem 1.5rem 1rem; transform: translateY(100%); transition: transform 0.3s ease; }
+        .photo-item:hover figcaption { transform: translateY(0); }
+        .photo-caption { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+        .photo-title { font-size: 1.1rem; font-weight: 400; }
+        .photo-number { font-size: 0.9rem; color: var(--secondary-color); }
+        .photo-location { font-size: 0.85rem; color: var(--secondary-color); }
+        .photo-list { max-width: 1000px; margin: 0 auto; animation: fadeIn 0.8s ease; }
+        .list-item { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 6rem; align-items: center; }
+        .list-item:nth-child(even) { direction: rtl; }
+        .list-item:nth-child(even) .list-content { direction: ltr; }
+        .list-image { position: relative; overflow: hidden; cursor: pointer; background: var(--bg-secondary); }
+        .list-image img { width: 100%; height: 600px; object-fit: cover; transition: transform 0.6s ease; }
+        .list-image:hover img { transform: scale(1.05); }
+        .list-content { padding: 2rem; }
+        .list-header { margin-bottom: 1.5rem; }
+        .list-number { font-size: 0.9rem; color: var(--secondary-color); margin-bottom: 0.5rem; }
+        .list-title { font-size: 2rem; font-weight: 300; margin-bottom: 0.5rem; }
+        .list-meta { font-size: 0.9rem; color: var(--secondary-color); }
+        .list-story { font-size: 1rem; line-height: 1.8; color: var(--secondary-color); font-weight: 300; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 2000; animation: fadeIn 0.3s ease; }
+        .modal-content { position: relative; max-width: 90vw; max-height: 90vh; margin: 5vh auto; background: var(--bg-secondary); overflow: hidden; border-radius: 4px; }
+        .modal-header { position: absolute; top: 0; left: 0; right: 0; background: linear-gradient(to bottom, rgba(34, 34, 34, 0.95), transparent); padding: 2rem; z-index: 10; }
+        .modal-header-content { display: flex; justify-content: space-between; align-items: start; }
+        .modal-info h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 0.5rem; }
+        .modal-meta { font-size: 0.9rem; color: var(--secondary-color); }
+        .close-modal { background: none; border: none; color: var(--primary-color); font-size: 2rem; cursor: pointer; padding: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.3s ease; }
+        .close-modal:hover { background: rgba(255, 255, 255, 0.1); }
+        .modal-image { width: 100%; height: 90vh; object-fit: contain; background: var(--background-color); }
+        .modal-story { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(34, 34, 34, 0.95), transparent); padding: 3rem 2rem 2rem; max-width: 800px; margin: 0 auto; }
+        .modal-story p { font-size: 1.1rem; line-height: 1.8; font-weight: 300; }
+        #about { border-top: 1px solid var(--border-color); margin-top: 6rem; padding: 4rem 0; }
+        .about-content { max-width: 600px; margin: 0 auto; text-align: center; }
+        .about-content h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 2rem; color: var(--secondary-color); }
+        .about-content p { font-size: 1.1rem; line-height: 1.8; font-weight: 300; color: var(--secondary-color); }
+        footer { border-top: 1px solid var(--border-color); padding: 3rem 0; text-align: center; }
+        footer p { color: var(--secondary-color); font-size: 0.9rem; margin-bottom: 1rem; }
+        footer a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: var(--secondary-color); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .loading { text-align: center; padding: 4rem; color: var(--secondary-color); }
         @media (max-width: 768px) {
-            .header-content {
-                padding: 1rem;
-            }
-
-            .title h1 {
-                font-size: 1rem;
-            }
-
-            nav {
-                gap: 1rem;
-            }
-
-            .view-toggle {
-                margin-left: 1rem;
-            }
-
-            .photo-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .list-item {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                margin-bottom: 4rem;
-            }
-
-            .list-item:nth-child(even) {
-                direction: ltr;
-            }
-
-            .list-content {
-                padding: 1rem;
-            }
-
-            .list-title {
-                font-size: 1.5rem;
-            }
-
-            .modal-content {
-                max-width: 100vw;
-                max-height: 100vh;
-                margin: 0;
-                border-radius: 0;
-            }
-
-            .modal-header {
-                padding: 1rem;
-            }
-
-            .modal-info h2 {
-                font-size: 1.2rem;
-            }
-
-            .modal-story {
-                padding: 2rem 1rem 1rem;
-            }
+            .header-content { width: 90%; /* padding: 0; is al van boven overgenomen */ }
+            .title h1 { font-size: 1rem; /* Was 1rem in index, 0.9em in andere. 1rem is prima. */ }
+            nav { gap: 1rem; }
+            .view-toggle { margin-left: 1rem; }
+            .photo-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .list-item { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem; }
+            .list-item:nth-child(even) { direction: ltr; }
+            .list-content { padding: 1rem; }
+            .list-title { font-size: 1.5rem; }
+            .modal-content { max-width: 100vw; max-height: 100vh; margin: 0; border-radius: 0; }
+            .modal-header { padding: 1rem; }
+            .modal-info h2 { font-size: 1.2rem; }
+            .modal-story { padding: 2rem 1rem 1rem; }
+            nav a { font-size: 0.8em; } /* Consistent met andere mobiele weergaves */
         }
-
-        /* Lazy loading animation */
-        .lazy-load {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .lazy-load.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Purchase button (keeping your existing functionality) */
-        .purchase-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: var(--accent);
-            color: var(--bg-primary);
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: opacity 0.3s ease;
-        }
-
-        .purchase-link:hover {
-            opacity: 0.8;
-        }
+        .lazy-load { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .lazy-load.loaded { opacity: 1; transform: translateY(0); }
+        .purchase-link { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: var(--accent); color: var(--bg-primary); text-decoration: none; border-radius: 4px; font-size: 0.9rem; transition: opacity 0.3s ease; }
+        .purchase-link:hover { opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -543,19 +220,10 @@
                 <a href="purchase.html">Prints</a>
                 <div class="view-toggle">
                     <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="Grid view">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <rect x="1" y="1" width="6" height="6"></rect>
-                            <rect x="9" y="1" width="6" height="6"></rect>
-                            <rect x="1" y="9" width="6" height="6"></rect>
-                            <rect x="9" y="9" width="6" height="6"></rect>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6"></rect><rect x="9" y="1" width="6" height="6"></rect><rect x="1" y="9" width="6" height="6"></rect><rect x="9" y="9" width="6" height="6"></rect></svg>
                     </button>
                     <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="List view">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <rect x="1" y="2" width="14" height="2"></rect>
-                            <rect x="1" y="7" width="14" height="2"></rect>
-                            <rect x="1" y="12" width="14" height="2"></rect>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="2" width="14" height="2"></rect><rect x="1" y="7" width="14" height="2"></rect><rect x="1" y="12" width="14" height="2"></rect></svg>
                     </button>
                 </div>
             </nav>
@@ -564,23 +232,14 @@
 
     <main>
         <div class="container">
-            <div id="gridView" class="photo-grid">
-                <!-- Photos will be loaded here -->
-            </div>
-            <div id="listView" class="photo-list" style="display: none;">
-                <!-- Photos will be loaded here -->
-            </div>
+            <div id="gridView" class="photo-grid"></div>
+            <div id="listView" class="photo-list" style="display: none;"></div>
         </div>
-
         <section id="about">
             <div class="container">
                 <div class="about-content">
                     <h2>About</h2>
-                    <p>
-                        Amateur photographer exploring the quiet moments.<br>
-                        Based in Belgium, wandering everywhere.<br>
-                        Finding stories in silence.
-                    </p>
+                    <p>Amateur photographer exploring the quiet moments.<br>Based in Belgium, wandering everywhere.<br>Finding stories in silence.</p>
                 </div>
             </div>
         </section>
@@ -588,12 +247,11 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Andries Fluit</p>
+            <p>&copy; 2025 Andries Fluit</p>
             <a href="mailto:hello@andriesfluit.be">hello@andriesfluit.be</a>
         </div>
     </footer>
 
-    <!-- Modal -->
     <div id="photoModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -606,261 +264,19 @@
                 </div>
             </div>
             <img id="modalImage" class="modal-image" alt="">
-            <div class="modal-story">
-                <p id="modalStory"></p>
-            </div>
+            <div class="modal-story"><p id="modalStory"></p></div>
         </div>
     </div>
-
     <script>
-        // Photo data - replace with your actual photo information
-        const photos = [
-            {
-                id: 'I',
-                src: 'img/img1.jpg',
-                title: 'Island Dreams',
-                location: 'Madeira',
-                date: 'March 2023',
-                story: 'The Atlantic fog rolled in like a whisper, transforming the familiar landscape into something otherworldly. Standing on these volcanic cliffs, I understood why sailors once believed this was the edge of the world.'
-            },
-            {
-                id: 'II',
-                src: 'img/img2.jpg',
-                title: 'Road to Nowhere',
-                location: 'Madeira',
-                date: 'March 2023',
-                story: 'Some roads lead to destinations; others lead to discoveries. This mountain pass, shrouded in mist, reminded me that the journey itself can be the destination.'
-            },
-            {
-                id: 'III',
-                src: 'img/img3.jpg',
-                title: 'After the Fire',
-                location: 'Madeira',
-                date: 'March 2023',
-                story: 'Nature has a way of reclaiming what was lost. These burnt slopes, scarred but not defeated, spoke of resilience and the endless cycle of destruction and rebirth.'
-            },
-            {
-                id: 'IV',
-                src: 'img/img4.jpg',
-                title: 'Persian Twilight',
-                location: 'Shiraz, Iran',
-                date: 'November 2022',
-                story: 'From my hotel window, the ancient city of poets sprawled beneath a modernizing skyline. Shiraz at dusk is a conversation between past and present, each building a verse in an ongoing poem.'
-            },
-            {
-                id: 'V',
-                src: 'img/img5.jpg',
-                title: 'Journey Within',
-                location: 'Shiraz, Iran',
-                date: 'November 2022',
-                story: 'In the back of a taxi, crossing a city of gardens and verses, I caught a glimpse of contemplation. Sometimes the most profound journeys happen while sitting still.'
-            },
-            {
-                id: 'VI',
-                src: 'img/img6.jpg',
-                title: 'City of a Thousand Hills',
-                location: 'Antananarivo, Madagascar',
-                date: 'June 2022',
-                story: 'They call it Tana, and from above, you understand why it sprawls across twelve sacred hills. Each neighborhood tells its own story, each rooftop holds its own dreams.'
-            },
-            {
-                id: 'VII',
-                src: 'img/img7.jpg',
-                title: 'Rural Rhythms',
-                location: 'Madagascar',
-                date: 'June 2022',
-                story: 'Life moves differently in the highlands. Here, time is measured not in hours but in harvests, not in deadlines but in seasons.'
-            },
-            {
-                id: 'VIII',
-                src: 'img/img8.jpg',
-                title: 'River Journey',
-                location: 'Madagascar',
-                date: 'June 2022',
-                story: 'The Pangalanes Canal cuts through the heart of the rainforest. From our pirogue, the world was reduced to water, green, and the sound of paddles breaking the surface.'
-            },
-            {
-                id: 'IX',
-                src: 'img/img9.jpg',
-                title: 'Green Cathedral',
-                location: 'Madagascar',
-                date: 'June 2022',
-                story: 'In the forest, silence has texture. Every leaf filters light differently, every shadow holds a secret. This is where the earth breathes.'
-            },
-            {
-                id: 'X',
-                src: 'img/img10.jpg',
-                title: 'Arctic Night',
-                location: 'Tromsø, Norway',
-                date: 'January 2022',
-                story: 'Above the Arctic Circle, darkness isn\'t the absence of light—it\'s a canvas. The snow reflects what little light exists, creating a world painted in shades of blue.'
-            },
-            {
-                id: 'XI',
-                src: 'img/img11.jpg',
-                title: 'Hope and Change',
-                location: 'Atlanta to Washington D.C.',
-                date: 'January 2009',
-                story: 'On a bus filled with strangers who felt like family, we traveled through the night toward history. The inauguration wasn\'t just about one man; it was about the possibility of transformation.'
-            },
-            {
-                id: 'XII',
-                src: 'img/img12.jpg',
-                title: 'Monuments and Moments',
-                location: 'Washington D.C.',
-                date: 'January 2009',
-                story: 'In the shadow of monuments to the past, we gathered to witness the future. The Lincoln Memorial had seen many crowds, but this one carried a different energy.'
-            },
-            {
-                id: 'XIII',
-                src: 'img/img13.jpg',
-                title: 'Congo Roads',
-                location: 'Outside Kinshasa, Congo',
-                date: 'August 2021',
-                story: 'The road from Kinshasa tests both vehicle and spirit. But in the midst of the journey, there are moments of unexpected grace—a smile, a story, a shared understanding.'
-            },
-            {
-                id: 'XIV',
-                src: 'img/img14.jpg',
-                title: 'Frozen Fjord',
-                location: 'Tromsø, Norway',
-                date: 'January 2022',
-                story: 'When the sea itself seems to pause, held in winter\'s grip, you realize that even the eternal can be transformed. The fjords in winter are nature\'s meditation on stillness.'
-            }
-        ];
-
-        // Initialize view
+        const photos = [ { id: 'I', src: 'img/img1.jpg', title: 'Island Dreams', location: 'Madeira', date: 'March 2023', story: 'The Atlantic fog rolled in like a whisper, transforming the familiar landscape into something otherworldly. Standing on these volcanic cliffs, I understood why sailors once believed this was the edge of the world.' }, { id: 'II', src: 'img/img2.jpg', title: 'Road to Nowhere', location: 'Madeira', date: 'March 2023', story: 'Some roads lead to destinations; others lead to discoveries. This mountain pass, shrouded in mist, reminded me that the journey itself can be the destination.' }, { id: 'III', src: 'img/img3.jpg', title: 'After the Fire', location: 'Madeira', date: 'March 2023', story: 'Nature has a way of reclaiming what was lost. These burnt slopes, scarred but not defeated, spoke of resilience and the endless cycle of destruction and rebirth.' }, { id: 'IV', src: 'img/img4.jpg', title: 'Persian Twilight', location: 'Shiraz, Iran', date: 'November 2022', story: 'From my hotel window, the ancient city of poets sprawled beneath a modernizing skyline. Shiraz at dusk is a conversation between past and present, each building a verse in an ongoing poem.' }, { id: 'V', src: 'img/img5.jpg', title: 'Journey Within', location: 'Shiraz, Iran', date: 'November 2022', story: 'In the back of a taxi, crossing a city of gardens and verses, I caught a glimpse of contemplation. Sometimes the most profound journeys happen while sitting still.' }, { id: 'VI', src: 'img/img6.jpg', title: 'City of a Thousand Hills', location: 'Antananarivo, Madagascar', date: 'June 2022', story: 'They call it Tana, and from above, you understand why it sprawls across twelve sacred hills. Each neighborhood tells its own story, each rooftop holds its own dreams.' }, { id: 'VII', src: 'img/img7.jpg', title: 'Rural Rhythms', location: 'Madagascar', date: 'June 2022', story: 'Life moves differently in the highlands. Here, time is measured not in hours but in harvests, not in deadlines but in seasons.' }, { id: 'VIII', src: 'img/img8.jpg', title: 'River Journey', location: 'Madagascar', date: 'June 2022', story: 'The Pangalanes Canal cuts through the heart of the rainforest. From our pirogue, the world was reduced to water, green, and the sound of paddles breaking the surface.' }, { id: 'IX', src: 'img/img9.jpg', title: 'Green Cathedral', location: 'Madagascar', date: 'June 2022', story: 'In the forest, silence has texture. Every leaf filters light differently, every shadow holds a secret. This is where the earth breathes.' }, { id: 'X', src: 'img/img10.jpg', title: 'Arctic Night', location: 'Tromsø, Norway', date: 'January 2022', story: 'Above the Arctic Circle, darkness isn\'t the absence of light—it\'s a canvas. The snow reflects what little light exists, creating a world painted in shades of blue.' }, { id: 'XI', src: 'img/img11.jpg', title: 'Hope and Change', location: 'Atlanta to Washington D.C.', date: 'January 2009', story: 'On a bus filled with strangers who felt like family, we traveled through the night toward history. The inauguration wasn\'t just about one man; it was about the possibility of transformation.' }, { id: 'XII', src: 'img/img12.jpg', title: 'Monuments and Moments', location: 'Washington D.C.', date: 'January 2009', story: 'In the shadow of monuments to the past, we gathered to witness the future. The Lincoln Memorial had seen many crowds, but this one carried a different energy.' }, { id: 'XIII', src: 'img/img13.jpg', title: 'Congo Roads', location: 'Outside Kinshasa, Congo', date: 'August 2021', story: 'The road from Kinshasa tests both vehicle and spirit. But in the midst of the journey, there are moments of unexpected grace—a smile, a story, a shared understanding.' }, { id: 'XIV', src: 'img/img14.jpg', title: 'Frozen Fjord', location: 'Tromsø, Norway', date: 'January 2022', story: 'When the sea itself seems to pause, held in winter\'s grip, you realize that even the eternal can be transformed. The fjords in winter are nature\'s meditation on stillness.' } ];
         let currentView = 'grid';
-
-        function setView(view) {
-            currentView = view;
-            const gridView = document.getElementById('gridView');
-            const listView = document.getElementById('listView');
-            const gridBtn = document.getElementById('gridViewBtn');
-            const listBtn = document.getElementById('listViewBtn');
-
-            if (view === 'grid') {
-                gridView.style.display = 'grid';
-                listView.style.display = 'none';
-                gridBtn.classList.add('active');
-                listBtn.classList.remove('active');
-            } else {
-                gridView.style.display = 'none';
-                listView.style.display = 'block';
-                gridBtn.classList.remove('active');
-                listBtn.classList.add('active');
-            }
-
-            // Save preference (with error handling for sandboxed environments)
-            try {
-                localStorage.setItem('preferredView', view);
-            } catch (e) {
-                // localStorage not available in sandboxed environment
-                console.log('localStorage not available');
-            }
-        }
-
-        function loadPhotos() {
-            const gridView = document.getElementById('gridView');
-            const listView = document.getElementById('listView');
-
-            // Clear existing content
-            gridView.innerHTML = '';
-            listView.innerHTML = '';
-
-            photos.forEach((photo, index) => {
-                // Grid view item
-                const gridItem = document.createElement('figure');
-                gridItem.className = 'photo-item lazy-load';
-                gridItem.onclick = () => openModal(photo);
-                gridItem.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy">
-                    <figcaption>
-                        <div class="photo-caption">
-                            <span class="photo-title">${photo.title}</span>
-                            <span class="photo-number">${photo.id}</span>
-                        </div>
-                        <p class="photo-location">${photo.location}</p>
-                    </figcaption>
-                `;
-                gridView.appendChild(gridItem);
-
-                // List view item
-                const listItem = document.createElement('div');
-                listItem.className = 'list-item lazy-load';
-                listItem.innerHTML = `
-                    <div class="list-image" onclick="openModal(photos[${index}])">
-                        <img src="${photo.src}" alt="${photo.title}" loading="lazy">
-                    </div>
-                    <div class="list-content">
-                        <div class="list-header">
-                            <p class="list-number">${photo.id}</p>
-                            <h3 class="list-title">${photo.title}</h3>
-                            <p class="list-meta">${photo.location} • ${photo.date}</p>
-                        </div>
-                        <p class="list-story">${photo.story}</p>
-                    </div>
-                `;
-                listView.appendChild(listItem);
-            });
-
-            // Trigger lazy loading animation
-            setTimeout(() => {
-                document.querySelectorAll('.lazy-load').forEach(el => {
-                    el.classList.add('loaded');
-                });
-            }, 100);
-        }
-
-        function openModal(photo) {
-            const modal = document.getElementById('photoModal');
-            document.getElementById('modalTitle').textContent = photo.title;
-            document.getElementById('modalMeta').textContent = `${photo.location} • ${photo.date}`;
-            document.getElementById('modalImage').src = photo.src;
-            document.getElementById('modalImage').alt = photo.title;
-            document.getElementById('modalStory').textContent = photo.story;
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(event) {
-            if (!event || event.target.id === 'photoModal' || event.currentTarget.classList.contains('close-modal')) {
-                const modal = document.getElementById('photoModal');
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Load preferred view
-        window.onload = () => {
-            let preferredView = 'grid'; // default
-            try {
-                preferredView = localStorage.getItem('preferredView') || 'grid';
-            } catch (e) {
-                // localStorage not available in sandboxed environment
-                console.log('localStorage not available, using default view');
-            }
-            setView(preferredView);
-            loadPhotos();
-        };
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        function setView(view) { currentView = view; const gridView = document.getElementById('gridView'); const listView = document.getElementById('listView'); const gridBtn = document.getElementById('gridViewBtn'); const listBtn = document.getElementById('listViewBtn'); if (view === 'grid') { gridView.style.display = 'grid'; listView.style.display = 'none'; gridBtn.classList.add('active'); listBtn.classList.remove('active'); } else { gridView.style.display = 'none'; listView.style.display = 'block'; gridBtn.classList.remove('active'); listBtn.classList.add('active'); } try { localStorage.setItem('preferredView', view); } catch (e) { console.log('localStorage not available'); } }
+        function loadPhotos() { const gridView = document.getElementById('gridView'); const listView = document.getElementById('listView'); gridView.innerHTML = ''; listView.innerHTML = ''; photos.forEach((photo, index) => { const gridItem = document.createElement('figure'); gridItem.className = 'photo-item lazy-load'; gridItem.onclick = () => openModal(photo); gridItem.innerHTML = ` <img src="${photo.src}" alt="${photo.title}" loading="lazy"> <figcaption> <div class="photo-caption"> <span class="photo-title">${photo.title}</span> <span class="photo-number">${photo.id}</span> </div> <p class="photo-location">${photo.location}</p> </figcaption> `; gridView.appendChild(gridItem); const listItem = document.createElement('div'); listItem.className = 'list-item lazy-load'; listItem.innerHTML = ` <div class="list-image" onclick="openModal(photos[${index}])"> <img src="${photo.src}" alt="${photo.title}" loading="lazy"> </div> <div class="list-content"> <div class="list-header"> <p class="list-number">${photo.id}</p> <h3 class="list-title">${photo.title}</h3> <p class="list-meta">${photo.location} • ${photo.date}</p> </div> <p class="list-story">${photo.story}</p> </div> `; listView.appendChild(listItem); }); setTimeout(() => { document.querySelectorAll('.lazy-load').forEach(el => { el.classList.add('loaded'); }); }, 100); }
+        function openModal(photo) { const modal = document.getElementById('photoModal'); document.getElementById('modalTitle').textContent = photo.title; document.getElementById('modalMeta').textContent = `${photo.location} • ${photo.date}`; document.getElementById('modalImage').src = photo.src; document.getElementById('modalImage').alt = photo.title; document.getElementById('modalStory').textContent = photo.story; modal.style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        function closeModal(event) { if (!event || event.target.id === 'photoModal' || event.currentTarget.classList.contains('close-modal')) { const modal = document.getElementById('photoModal'); modal.style.display = 'none'; document.body.style.overflow = 'auto'; } }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); } });
+        window.onload = () => { let preferredView = 'grid'; try { preferredView = localStorage.getItem('preferredView') || 'grid'; } catch (e) { console.log('localStorage not available, using default view'); } setView(preferredView); loadPhotos(); };
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
     </script>
 </body>
 </html>
